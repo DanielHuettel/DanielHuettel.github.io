@@ -5,7 +5,7 @@ const breite = div.getAttribute("data-lat");
 const laenge = div.getAttribute("data-lng");
 const titel = div.getAttribute("data-title");
 
-//console.log("Breite="breite,"Länge=",laenge,"Titel=",titel);
+console.log("Breite=",breite,"Länge=",laenge,"Titel=",titel);
 
 //karte initialisieren
 
@@ -17,3 +17,5 @@ karte.setView(
 [breite,laenge],
 13
 );
+//openstreetmap einbauen
+L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(karte);
