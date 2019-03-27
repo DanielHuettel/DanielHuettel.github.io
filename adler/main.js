@@ -8,7 +8,7 @@ const breite2 = div.getAttribute("data-lat2");
 const laenge2 = div.getAttribute("data-lng2");
 const titel2 = div.getAttribute("data-title2");
 
-console.log("Breite=", breite1, "Länge=", laenge1, "Titel=", titel1);
+//console.log("Breite=", breite1, "Länge=", laenge1, "Titel=", titel1);
 
 //karte initialisieren
 
@@ -35,7 +35,7 @@ let pin2 = L.marker(
 // Popup zum PIN hängen
 pin1.bindPopup(titel1).openPopup();
 pin2.bindPopup(titel2).openPopup();
-for (let blick of adlerblicke) {
+for (let blick of ADLERBLICKE) {
     let blickpin = L.marker(
         [blick.lat, blick.lng]
     ).addTo(karte);
