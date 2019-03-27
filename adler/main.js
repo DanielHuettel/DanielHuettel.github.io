@@ -17,7 +17,7 @@ let karte = L.map("map");
 //console.log(karte);
 //auf ausschnitt zoomen
 karte.setView(
-[breite,laenge],
+[breite1,laenge1],
 13
 );
 //openstreetmap einbauen
