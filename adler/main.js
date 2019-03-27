@@ -34,3 +34,15 @@ let pin2 = L.marker(
 // Popup zum PIN hängen
 pin1.bindPopup(titel1).openPopup();
 pin2.bindPopup(titel2).openPopup();
+
+const blick1 = {
+    kunde: "Wilder Kaiser", 
+    standort: "Gruttenhütte",
+    seehoehe: 1640,
+    lat: 47.55564,
+    lng: 12.31861,
+};
+
+let pin3 = L.marker(
+    [blick1.lat, blick1.lng]
+).addTo(karte);
