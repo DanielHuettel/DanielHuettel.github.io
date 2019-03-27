@@ -16,9 +16,6 @@ let karte = L.map("map");
 
 //console.log(karte);
 //auf ausschnitt zoomen
-karte.setView(
-    [47.2, 11.2],
-    8 //Zoomlevel, auf den karte eingestellt ist
 
 );
 //openstreetmap einbauen
@@ -35,13 +32,20 @@ let pin2 = L.marker(
 // Popup zum PIN hängen
 pin1.bindPopup(titel1).openPopup();
 pin2.bindPopup(titel2).openPopup();
+
+let blickeGruppe = L.featureGroup().addTo(karte);
+
 for (let blick of ADLERBLICKE) {
     let blickpin = L.marker(
         [blick.lat, blick.lng]
-    ).addTo(karte);
+    ).addTo(blickeGruppe);
     blickpin.bindPopup(
         `<h1>Standort ${blick.standort}</h1>
     <p> Höhe ${blick.hoehe} m </p>
     <em>Kunde ${blick.kunde}</em>`
     );
 }
+console.log(blickeGruppe.getBounds());
+
+//auf auschnitt der blickgruppe zoomen
+karte.fitBounds(blickeGruppe.getBounds());
