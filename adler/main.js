@@ -8,7 +8,7 @@ const breite2 = div.getAttribute("data-lat2");
 const laenge2 = div.getAttribute("data-lng2");
 const titel2 = div.getAttribute("data-title2");
 
-console.log("Breite=",breite,"Länge=",laenge,"Titel=",titel);
+console.log("Breite=",breite1,"Länge=",laenge1,"Titel=",titel1);
 
 //karte initialisieren
 
