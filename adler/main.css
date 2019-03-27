@@ -7,7 +7,7 @@ body  {
   header  {
     text-align: center;
     background-image: url("images/header.jfif");
-    background-size: cover;
+    background-size: 100%;
     color: darkred;
 
 }
