@@ -31,7 +31,7 @@ body  {
   }
   .author img {
       border-radius: 50%;
-      margin-top: -200px;
+      margin-top: -10 %;
   }
   address a {
       color: gray;
