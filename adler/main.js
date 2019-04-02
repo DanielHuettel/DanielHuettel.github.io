@@ -17,7 +17,6 @@ let karte = L.map("map");
 //console.log(karte);
 //auf ausschnitt zoomen
 
-);
 //openstreetmap einbauen
 L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png").addTo(karte);
 
