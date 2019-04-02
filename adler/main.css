@@ -30,7 +30,7 @@ body  {
       text-align: center;
   }
   .author img {
-      border-radius: 50%;
+      border-radius: 10%;
       margin-top: -50px;
   }
   address a {
