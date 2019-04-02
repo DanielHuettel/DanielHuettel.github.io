@@ -7,7 +7,7 @@ body  {
   header  {
     text-align: center;
     background-image: url("images/header.jfif");
-    backround position: relative;
+    backround position: 0 50%;
 
 }
   header h2  {
