@@ -1,111 +1,148 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Adlerweg - Innsbruck - Solsteinhaus</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.4.0/dist/leaflet.css" />
     <script src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js"></script>
+
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
     <script src="blicke.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-hash/0.2.1/leaflet-hash.js"></script>
     <script defer src="main.js"></script>
+    <link href="plugins/Control.Coordinates.css" rel="stylesheet">
+    <script src="plugins/Control.Coordinates.js"></script>
+
 </head>
-    
+
 <body>
     <header>
-           
+
         <h1>Tirol</h1>
         <h3>Weitwandern auf dem Adlerweg</h3>
         <h3>Etappe 14: Innsbruck - Solsteinhaus </h3>
     </header>
 
-    <div class="author"></class> 
+    <div class="author">
+        </class>
         <img src="images/user.jpg" alt="user">
         <address>
-               <a href="mailto:Daniel.Huettel@student.uibk.ac.at">email an den Autor</a><br>
+            <a href="mailto:Daniel.Huettel@student.uibk.ac.at">email an den Autor</a><br>
             <a href="https://github.com/DanielHuettel/DanielHuettel.github.io">github</a><br>
         </address>
     </div>
     <hr />
 
     <main>
-        <h1>Innsbruck - Solsteinhaus</h1>
-            <DIV>Explore More</DIV>
-            <h2>Etappe 14 des Adlerwegs</h2>
-            <p>Einer der schönsten Wanderwege durch Tirol</p>
-            <figure>
-                <figcaption><i class="fas fa-camera"></i> <em>Solsteinhaus</em> </figcaption>
-                <img src="images/solsteinhaus_aktuell.jpg" alt="Das Solsteinhaus">
-            
-        </figure> 
-        
-        </p> 
+        <h1>Der Adlerweg</h1>
+        <h2>Etappe 14 </h2>
+        <h2>von Innsbruck zum Solsteinhaus</h2>
+        <p>Einer der schönsten Wanderwege durch Tirol</p>
+        <figure>
+            <figcaption><i class="fas fa-camera"></i> <em>Solsteinhaus</em> </figcaption>
+            <img src="images/solsteinhaus_aktuell.jpg" alt="Das Solsteinhaus">
+
+        </figure>
+
+        </p>
         <h2>Historie des Solsteinhaus</h2>
         <figure>
-                <figcaption><i class="fas fa-camera"></i> <em>Das Solsteinhaus, Aufnahme von 1805</em> </figcaption>
-                <img src="images/solsteinhaus.jpg" alt="Das Solsteinhaus, Aufnahme von 1805">
-                <div> 	
-                        Solsteinhaus (1805 m, der Sektion Innsbruck) auf dem Erlsattel (Karwendel) aus Zeitschrift des Deutschen und Oesterreichischen Alpenvereins 1919 Band 50   <a href="https://commons.wikimedia.org/wiki/File:Solsteinhaus_der_Sektion_Innsbruck.jpg">Bildquelle: Wikipedia</a></div>
-                <p>Bereits Anfangs des 19. Jahrhunderts war das Aolsteinhaus ein belibtes Ziel für Wandernde in Tirol</p>
-            
+            <figcaption><i class="fas fa-camera"></i> <em>Das Solsteinhaus, Aufnahme von 1805</em> </figcaption>
+            <img src="images/solsteinhaus.jpg" alt="Das Solsteinhaus, Aufnahme von 1805">
+            <div>
+                Solsteinhaus (1805 m, der Sektion Innsbruck) auf dem Erlsattel (Karwendel)<a
+                    href="https://commons.wikimedia.org/wiki/File:Solsteinhaus_der_Sektion_Innsbruck.jpg"> <br> Bildquelle:
+                    Wikipedia</a></div>
+            <p>Bereits Anfangs des 19. Jahrhunderts war das Aolsteinhaus ein belibtes Ziel für Wandernde in Tirol</p>
+
         </figure>
-        
-        
-            <p>
-                <h1>Wanderweg</h1>
-                <p>Bevor man sich mit eigener Muskelkraft in in Bewegung setzt, fährt man mit der Karwendelbahn bzw. der Mittenwaldbahn vom Bahnhof Innsbruck zum Bahnhof Hochzirl. Ab hier beginnt die Tour zum Solsteinhaus. Zuerst steil bergauf, aber schwierige Passagen stehen nicht an, dafür schöne Wanderungen über Forststraßen, Steige und Karrenwege durch Wälder und über sanfte Almwiesen. Von der idyllischen Solnalm sieht man zum ersten Mal das Solsteinhaus im Tiroler Karwendel. Die Hütte liegt auf 1.805 Metern, ist zeitgemäß ausgestattet und man darf sich auf regionale Küche und eine warme Dusche freuen. Für jene, die nach der Tour noch Energie loswerden wollen: In der Hütte gibt es sogar eine eigene Kletterwand!
-                        <figure>
-                                <div> Eigenschaften der Etappe im Überblick <br></div>
-                                <img src="images/snip_1.PNG"><a href="https://www.bergwelten.com/t/w/14160"><br>Bildquelle: Bergwelten</a><br>
-                                
-                                <br><div> Höhenprofil <br></div>
-                                <img src="images/snip_2.PNG"><a href="https://www.bergwelten.com/t/w/14160"><br>Bildquelle: Bergwelten</a><br>
-                        </figure>
-                        <h2>Wegbeschreibung</h2>
-                        <div>Mit der Mittenwaldbahn von Innsbruck nach Hochzirl, oder man entscheidet sich für die Variante zu Fuß: Vom Hauptbahnhof in Richtung Westen der Salurnerstraße bis zur Triumphpforte folgen, dann nach links in die Maria-Theresien-Straße abbiegen, die immer geradeaus in die Altstadt zum Goldenen Dachl führt. Dort rechts vorbei in die Domgasse bis zum Dom zu St. Jakob. Dem Jakobsweg durch Innsbruck weiter nach Kranebitten, Völs, Kematen folgen, ab Kematen den Wanderweg über die Innbrücke in Richtung Zirl nehmen. Anschließend weiter durch die Ehnbachklamm in Richtung Plainer zum Bahnhof Hochzirl und direkt vom Bahnhof der Beschilderung „Solsteinhaus“ folgen. Nördlich der Gleise führt ein guter Steig gleich in den dichten Wald hinein und mündet nach kurzer Zeit in einen Karrenweg. Auf diesem geht es direkt und sehr steil nach oben. Bald mündet links der Weg vom Krankenhaus Hochzirl ein, man wandert weiter aufwärts und in nordöstlicher Richtung steil durch den Wald. Nach der Überquerung des kleinen Bachs, der vom Brunnenschrofen herunter rinnt, geht es ein kurzes Stück fast eben bzw. sanft ansteigend dahin. Die Route ähnelt jetzt beinahe einem Fahrweg, zieht aber bald wieder kräftiger empor. In einer Höhe von rund 1.350 Metern trifft die Route mit einem breiten Forstweg zusammen – hier weiter nach oben. Nun führt der Weg oberhalb einer kleinen Schlucht vorbei. Nach dem Bach gelangt man über einen Steig im lichter werdenden Wald bzw. durch die Latschen hinauf ins freie Almgebiet der lieblichen Solnalm. Von hier erblickt man erstmals das Etappenziel Solsteinhaus.
-                                Weiter geht es rechts an der Alm vorbei und in nördlicher Richtung taleinwärts auf das Höllkar zu. Dabei wird die eine oder andere Schuttrinne passiert. Der Steig quert die Ausläufer des Höllkars sowie den Bach und zieht schließlich inmitten von Latschen gemütlich den Hang nach oben zum Erlsattel mit dem komfortablen Solsteinhaus (1.805 Meter).</div>
+
+
+        <p>
+            <h1>Wanderweg</h1>
+            <p>Bevor man sich mit eigener Muskelkraft in in Bewegung setzt, fährt man mit der Karwendelbahn bzw. der
+                Mittenwaldbahn vom Bahnhof Innsbruck zum Bahnhof Hochzirl. Ab hier beginnt die Tour zum Solsteinhaus.
+                Zuerst steil bergauf, aber schwierige Passagen stehen nicht an, dafür schöne Wanderungen über
+                Forststraßen, Steige und Karrenwege durch Wälder und über sanfte Almwiesen. Von der idyllischen Solnalm
+                sieht man zum ersten Mal das Solsteinhaus im Tiroler Karwendel. Die Hütte liegt auf 1.805 Metern, ist
+                zeitgemäß ausgestattet und man darf sich auf regionale Küche und eine warme Dusche freuen. Für jene, die
+                nach der Tour noch Energie loswerden wollen: In der Hütte gibt es sogar eine eigene Kletterwand!
+                <figure>
+                    <h4>Eigenschaften der Etappe im Überblick <br></h4>
+                    <img src="images/snip_1.PNG"><a href="https://www.bergwelten.com/t/w/14160"><br>Bildquelle:
+                        Bergwelten</a><br>
+
+                    <br>
+                    <h4>Höhenprofil <br></h4>
+                    <img src="images/snip_2.PNG"><a href="https://www.bergwelten.com/t/w/14160"><br>Bildquelle:
+                        Bergwelten</a><br>
+                </figure>
+                <h2>Wegbeschreibung</h2>
+                <div>Mit der Mittenwaldbahn von Innsbruck nach Hochzirl, oder man entscheidet sich für die Variante zu
+                    Fuß: Vom Hauptbahnhof in Richtung Westen der Salurnerstraße bis zur Triumphpforte folgen, dann nach
+                    links in die Maria-Theresien-Straße abbiegen, die immer geradeaus in die Altstadt zum Goldenen Dachl
+                    führt. Dort rechts vorbei in die Domgasse bis zum Dom zu St. Jakob. Dem Jakobsweg durch Innsbruck
+                    weiter nach Kranebitten, Völs, Kematen folgen, ab Kematen den Wanderweg über die Innbrücke in
+                    Richtung Zirl nehmen. Anschließend weiter durch die Ehnbachklamm in Richtung Plainer zum Bahnhof
+                    Hochzirl und direkt vom Bahnhof der Beschilderung „Solsteinhaus“ folgen. Nördlich der Gleise führt
+                    ein guter Steig gleich in den dichten Wald hinein und mündet nach kurzer Zeit in einen Karrenweg.
+                    Auf diesem geht es direkt und sehr steil nach oben. Bald mündet links der Weg vom Krankenhaus
+                    Hochzirl ein, man wandert weiter aufwärts und in nordöstlicher Richtung steil durch den Wald. Nach
+                    der Überquerung des kleinen Bachs, der vom Brunnenschrofen herunter rinnt, geht es ein kurzes Stück
+                    fast eben bzw. sanft ansteigend dahin. Die Route ähnelt jetzt beinahe einem Fahrweg, zieht aber bald
+                    wieder kräftiger empor. In einer Höhe von rund 1.350 Metern trifft die Route mit einem breiten
+                    Forstweg zusammen – hier weiter nach oben. Nun führt der Weg oberhalb einer kleinen Schlucht vorbei.
+                    Nach dem Bach gelangt man über einen Steig im lichter werdenden Wald bzw. durch die Latschen hinauf
+                    ins freie Almgebiet der lieblichen Solnalm. Von hier erblickt man erstmals das Etappenziel
+                    Solsteinhaus.
+                    Weiter geht es rechts an der Alm vorbei und in nördlicher Richtung taleinwärts auf das Höllkar zu.
+                    Dabei wird die eine oder andere Schuttrinne passiert. Der Steig quert die Ausläufer des Höllkars
+                    sowie den Bach und zieht schließlich inmitten von Latschen gemütlich den Hang nach oben zum
+                    Erlsattel mit dem komfortablen Solsteinhaus (1.805 Meter).</div>
                 <h2>Anspruch</h2>
-                    <div>mäßig (T2 – Bergwandern nach SAC-Skala)</div>
-                    <h2>Weg/Gelände</h2>
-                    <div> Weg mit durchgehendem Trassee. Gelände teilweise steil, Absturzgefahr nicht ausgeschlossen.</div>
-                    <h2>Anforderungen</h2>
-                    <div>Etwas Trittsicherheit. Trekkingschuhe sind empfehlenswert. Elementares Orientierungsvermögen.</div>
-                    <h2>Parkplatz</h2>
-                    <div>Parken (auch Langzeitparken) ist im Zentrum von Innsbruck nicht gerade günstig. Hier einige Möglichkeiten zur <a href="http://www.innsbruckmarketing.at/parken.html">Parkplatzsuche</a></div>
-                    <h2>Anfahrt</h2>
-                    <div>Von Osten und Westen A12. Für die Fahrt durch den Arlbergtunnel gilt Mautpflicht.Von Süden A13 (Brennerautobahn); Autobahn ab Innsbruck-Süd mautpflichtig</div>
-                    <h2>Öffentliche Verkehrsmittel</h2>
-                    <div>Mit der Bahn bis zum Hauptbahnhof Innsbruck</div>
+                <div>mäßig (T2 – Bergwandern nach SAC-Skala)</div>
+                <h2>Weg/Gelände</h2>
+                <div> Weg mit durchgehendem Trassee. Gelände teilweise steil, Absturzgefahr nicht ausgeschlossen.</div>
+                <h2>Anforderungen</h2>
+                <div>Etwas Trittsicherheit. Trekkingschuhe sind empfehlenswert. Elementares Orientierungsvermögen.</div>
+                <h2>Parkplatz</h2>
+                <div>Parken (auch Langzeitparken) ist im Zentrum von Innsbruck nicht gerade günstig. Hier einige
+                    Möglichkeiten zur <a href="http://www.innsbruckmarketing.at/parken.html">Parkplatzsuche</a></div>
+                <h2>Anfahrt</h2>
+                <div>Von Osten und Westen A12. Für die Fahrt durch den Arlbergtunnel gilt Mautpflicht.Von Süden A13
+                    (Brennerautobahn); Autobahn ab Innsbruck-Süd mautpflichtig</div>
+                <h2>Öffentliche Verkehrsmittel</h2>
+                <div>Mit der Bahn bis zum Hauptbahnhof Innsbruck</div>
 
 
-                
-        </p>
 
-        <h3>Übersichtskarte</h3>
-        <div id="map" 
-        data-lat1="47.308135" 
-        data-lng1="11.288194" 
-        data-title1="Solsteinhaus"
-        data-lat2="47.268339" 
-        data-lng2="11.391277" 
-        data-title2="Innsbruck"
-        ></div>
-        <!-- TODO: ein div-Element mit dem id-Attribut "map" und drei weiteren Attributen data-lat, data-lng und data-title. Die Koordinaten von data-lat und data-lng sind als Dezimalgrad mit einem "." als Komma zu schreiben und aus der Wikipedia zu entnehmen. Das data-title Attribut enthält einen Titel für die oben verwendete Sehenswürdigkeit
+            </p>
+
+            <h3>Übersichtskarte</h3>
+            <div id="map" data-lat1="47.308135" data-lng1="11.288194" data-title1="Solsteinhaus" data-lat2="47.268339"
+                data-lng2="11.391277" data-title2="Innsbruck"></div>
+            <!-- TODO: ein div-Element mit dem id-Attribut "map" und drei weiteren Attributen data-lat, data-lng und data-title. Die Koordinaten von data-lat und data-lng sind als Dezimalgrad mit einem "." als Komma zu schreiben und aus der Wikipedia zu entnehmen. Das data-title Attribut enthält einen Titel für die oben verwendete Sehenswürdigkeit
         -->
 
-        <h3>Links</h3>
-        <div>
-            <ul>
+            <h3>Links</h3>
+            <div>
+                <ul>
                     <li><a href="https://www.bergwelten.com/t/w/14160">Bergwelten</a></li>
-                    <li><a href="https://www.tirol.at/reisefuehrer/sport/wandern/alpenvereinshuetten/a-solsteinhaus">tirol.at</a></li>
+                    <li><a
+                            href="https://www.tirol.at/reisefuehrer/sport/wandern/alpenvereinshuetten/a-solsteinhaus">tirol.at</a>
+                    </li>
                     <li><a href="https://solsteinhaus.at/">Solsteinhaus</a></li>
                     <li><a href="https://www.alpenverein.at/solsteinhaus/">Alpenverein</a></li>
-            </ul>
-        </div>
-       
+                </ul>
+            </div>
+
 
     </main>
 
@@ -113,8 +150,10 @@
 
     <footer>
         <nav>
-            <a class="back" href="https://meryp.github.io/adler/index.html"><i class="fas fa-arrow-left"></i>  vorherige Etappe</a>
-            <a class="next" href="https://leoniewae.github.io/adler/index.html">nächste Etappe  <i class="fas fa-arrow-right"></i></a>
+            <a class="back" href="https://meryp.github.io/adler/index.html"><i class="fas fa-arrow-left"></i> vorherige
+                Etappe</a>
+            <a class="next" href="https://leoniewae.github.io/adler/index.html">nächste Etappe <i
+                    class="fas fa-arrow-right"></i></a>
         </nav>
         <!-- TODO: ein nav-Element mit zwei Links auf die vorherige Etappe und die nächste Etappe mit den Klassen "back" und "next" sowie den Link-Texten "vorhergehender Stop" und "nächster Stop". Die Links verweisen auf die entsprechenden Etappen in der Form https://username.github.io/nz/index.html -->
     </footer>
