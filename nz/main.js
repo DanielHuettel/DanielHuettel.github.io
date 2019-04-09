@@ -44,7 +44,9 @@ let karte = L.map("map");
 
 //console.log(karte);
 //auf ausschnitt zoomen
-
+karte.setView(
+    [breite1, laenge1], 13
+);
 //openstreetmap einbauen
 // L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 //     subdomains : ["a","b","c"], 
@@ -59,30 +61,28 @@ const kartenLayer = {
     stamen_toner : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",{
     subdomains : ["a", "b", "c"],
     attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
-}),
-stamen_terrain : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",{
+    }),
+    stamen_terrain : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",{
     subdomains : ["a", "b", "c"],
     attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
-}),
-stamen_watercolor : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",{
+    }),
+    stamen_watercolor : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",{
     subdomains : ["a", "b", "c"],
     attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
-})
+})};
 
-};
-
-kartenLayer.osm.addTo(karte) //default hintergrundkarte
+kartenLayer.osm.addTo(karte); //default hintergrundkarte
 
 
 
 
 //Auswahlmenü hinzufügen
 L.control.layers({
-    "stamen_toner" : kartenLayer.stamen_toner
-    "stamen_terrain" : kartenLayer.stamen_terrain
-    "stamen_watercolor" : kartenLayer.stamen_watercolor
+    "stamen_toner" : kartenLayer.stamen_toner,
+    "stamen_terrain" : kartenLayer.stamen_terrain,
+    "stamen_watercolor" : kartenLayer.stamen_watercolor,
     "osm" : kartenLayer.osm
-}).addTo(karte)
+}).addTo(karte);
     
 
 // Positionsmarker hinzufügen
@@ -94,8 +94,6 @@ let pin1 = L.marker(
 // Popup zum PIN hängen
 pin1.bindPopup(titel1).openPopup();
 
-
-let blickeGruppe = L.featureGroup().addTo(karte);
 
 
 karte.addControl(new L.Control.Fullscreen());
