@@ -75,7 +75,6 @@ kartenLayer.osm.addTo(karte); //default hintergrundkarte
 
 
 
-
 //Auswahlmenü hinzufügen
 L.control.layers({
     "stamen_toner" : kartenLayer.stamen_toner,

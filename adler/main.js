@@ -17,6 +17,7 @@ let karte = L.map("map");
 //console.log(karte);
 //auf ausschnitt zoomen
 
+
 //openstreetmap einbauen
 // L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
 //     subdomains : ["a","b","c"], 
@@ -118,3 +119,6 @@ coords.addTo(karte);
 karte.on('click', function(e) {
 	coords.setCoordinates(e);
 });
+
+karte.setView(
+    [breite1, laenge1], 13
