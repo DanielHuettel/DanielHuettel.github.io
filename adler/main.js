@@ -121,4 +121,5 @@ karte.on('click', function(e) {
 });
 
 karte.setView(
-    [breite1, laenge1], 13
+    [blickeGruppe], 13
+);
