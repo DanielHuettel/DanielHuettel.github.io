@@ -112,8 +112,8 @@ console.log(blickeGruppe.getBounds());
 //auf auschnitt der blickgruppe zoomen
 karte.fitBounds(blickeGruppe.getBounds());
 karte.addControl(new L.Control.Fullscreen());
-var hash = new L.Hash(karte);
-var coords = new L.Control.Coordinates();
+let hash = new L.Hash(karte);
+let coords = new L.Control.Coordinates();
 coords.addTo(karte);
 karte.on('click', function(e) {
 	coords.setCoordinates(e);
