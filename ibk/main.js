@@ -1,37 +1,38 @@
-
 //innitiiert karte
 let karte = L.map("map");
 
 //Ausschnitt und Zoomfaktor festlegen
 //karte.setView(
- //  [47, 11], 13
-   // );
+//  [47, 11], 13
+// );
 
-   let positionsMarker = L.marker([47,11]).addTo(karte); //setzt marker auf position 47,11,,, nur wichtig bei letzterer schreibweise, das erst marker gesetzt wird, der später umgesetzt wird
+let positionsMarker = L.marker([47, 11]).addTo(karte); //setzt marker auf position 47,11,,, nur wichtig bei letzterer schreibweise, das erst marker gesetzt wird, der später umgesetzt wird
+
 
 //locate=auf standort zoomen
 karte.locate({
-    setView : true,
-    maxZoom : 18,
-    watch : true, //verschiebt marker, sobald neue location gefunden
+    setView: true,
+    maxZoom: 18,
+   // watch: true, //verschiebt marker, sobald neue location gefunden
 });
 
 //marker setzen auf located position
-karte.on("locationfound", function(event){
+karte.on("locationfound", function (event) {
     console.log(event);
     //L.marker(event.latlng).addTo(karte); 
-        //[event.latitude, event.longitude]   // //ist auch eine schreibweise
+    //[event.latitude, event.longitude]   // //ist auch eine schreibweise
     positionsMarker.setLatLng(event.latlng);
-    
+
     //Kreis zeichnen um Positionsmarker mit Radius der genauigkeit der Standortmarkers
     L.circle([
-        event.latitude, event.longitude],
-        {radius: event.accuracy/2}
-        ).addTo(karte);
+        event.latitude, event.longitude
+    ], {
+        radius: event.accuracy / 2
+    }).addTo(karte);
 });
 
 //alert bei location not
-karte.on("locationerror", function(event) {
+karte.on("locationerror", function (event) {
     alert("Leider keinen Standort gefunden")
 });
 
@@ -69,32 +70,32 @@ const kartenLayer = {
         subdomains: ["maps1", "maps2", "maps3", "maps4"],
         attribution: 'datenquelle: <a href="https://www.basemap.at">basemap.at</a>'
     }),
-    stamen_toner : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png",{
-        subdomains : ["a", "b", "c"],
-        attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+    stamen_toner: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/toner/{z}/{x}/{y}.png", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
     }),
-    stamen_terrain : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png",{
-        subdomains : ["a", "b", "c"],
-        attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+    stamen_terrain: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
     }),
-    stamen_watercolor : L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png",{
-        subdomains : ["a", "b", "c"],
-        attribution : 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
+    stamen_watercolor: L.tileLayer("https://stamen-tiles-{s}.a.ssl.fastly.net/watercolor/{z}/{x}/{y}.png", {
+        subdomains: ["a", "b", "c"],
+        attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://creativecommons.org/licenses/by-sa/3.0">CC BY SA</a>.'
     }),
 };
 kartenLayer.geolandbasemap.addTo(karte)
 
 //Auswahlmenü hinzufügen
 L.control.layers({
-    "geolandbasemap" : kartenLayer.geolandbasemap,
-    "geolandbasemapgrau" : kartenLayer.geolandbasemapgrau,
-    "basemaphighdpi" : kartenLayer.basemaphighdpi,
-    "geolandbasemaporthofoto" : kartenLayer.geolandbasemaporthofoto,
-    "eolandbasemapgelände" : kartenLayer.geolandbasemapgelände,
-    "geolandbasemapoberfläche" : kartenLayer.geolandbasemapoberfläche,
-    "osm" : kartenLayer.osm,
-    "watercolor" : kartenLayer.stamen_watercolor,
-    "terrain" : kartenLayer.stamen_terrain, 
-    "toner" : kartenLayer.stamen_toner
-})
-.addTo(karte);
+        "geolandbasemap": kartenLayer.geolandbasemap,
+        "geolandbasemapgrau": kartenLayer.geolandbasemapgrau,
+        "basemaphighdpi": kartenLayer.basemaphighdpi,
+        "geolandbasemaporthofoto": kartenLayer.geolandbasemaporthofoto,
+        "eolandbasemapgelände": kartenLayer.geolandbasemapgelände,
+        "geolandbasemapoberfläche": kartenLayer.geolandbasemapoberfläche,
+        "osm": kartenLayer.osm,
+        "watercolor": kartenLayer.stamen_watercolor,
+        "terrain": kartenLayer.stamen_terrain,
+        "toner": kartenLayer.stamen_toner
+    })
+    .addTo(karte);
