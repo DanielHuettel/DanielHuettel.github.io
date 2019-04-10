@@ -7,18 +7,22 @@ let karte = L.map("map");
  //  [47, 11], 13
    // );
 
+   let positionsMarker = L.marker([47,11]).addTo(karte); //setzt marker auf position 47,11,,, nur wichtig bei letzterer schreibweise, das erst marker gesetzt wird, der später umgesetzt wird
+
 //locate=auf standort zoomen
 karte.locate({
     setView : true,
     maxZoom : 18,
+    watch : true, //verschiebt marker, sobald neue location gefunden
 });
 
 //marker setzen auf located position
 karte.on("locationfound", function(event){
     console.log(event);
-    L.marker([
-        event.latitude, event.longitude
-    ]).addTo(karte);
+    //L.marker(event.latlng).addTo(karte); 
+        //[event.latitude, event.longitude]   // //ist auch eine schreibweise
+    positionsMarker.setLatLng(event.latlng);
+    
     //Kreis zeichnen um Positionsmarker mit Radius der genauigkeit der Standortmarkers
     L.circle([
         event.latitude, event.longitude],
@@ -26,10 +30,10 @@ karte.on("locationfound", function(event){
         ).addTo(karte);
 });
 
-//L.circle({
-   // event.latitude, event.longitude, 518}).addTo
-
-
+//alert bei location not
+karte.on("locationerror", function(event) {
+    alert("Leider keinen Standort gefunden")
+});
 
 
 const kartenLayer = {
