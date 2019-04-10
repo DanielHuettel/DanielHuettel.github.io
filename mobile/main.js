@@ -1,7 +1,41 @@
 //innitiiert karte
 let karte = L.map("map");
 
-karte.setView([47.26722, 11.392778], 15)
+//Ausschnitt und Zoomfaktor festlegen
+//karte.setView(
+//  [47, 11], 13
+// );
+
+let positionsMarker = L.marker([47, 11]).addTo(karte); //setzt marker auf position 47,11,,, nur wichtig bei letzterer schreibweise, das erst marker gesetzt wird, der später umgesetzt wird
+
+
+//locate=auf standort zoomen
+karte.locate({
+    setView: true,
+    maxZoom: 18,
+    watch: true, //verschiebt marker, sobald neue location gefunden
+});
+
+//marker setzen auf located position
+karte.on("locationfound", function (event) {
+    console.log(event);
+    //L.marker(event.latlng).addTo(karte); 
+    //[event.latitude, event.longitude]   // //ist auch eine schreibweise
+    positionsMarker.setLatLng(event.latlng);
+
+    //Kreis zeichnen um Positionsmarker mit Radius der genauigkeit der Standortmarkers
+    L.circle([
+        event.latitude, event.longitude
+    ], {
+        radius: event.accuracy / 2
+    }).addTo(karte);
+});
+
+//alert bei location not
+karte.on("locationerror", function (event) {
+    alert("Leider keinen Standort gefunden")
+});
+
 
 const kartenLayer = {
     osm: L.tileLayer("http://{s}.tile.osm.org/{z}/{x}/{y}.png", {
@@ -65,28 +99,3 @@ L.control.layers({
         "toner": kartenLayer.stamen_toner
     })
     .addTo(karte);
-   
-    //console.log(SPORTSTAETTEN);
-
-    //positionsmarker und popup für STAETTE HINZUFÜGEN
-    for (let staette of SPORTSTAETTEN) {
-        //console.log(staette);
-        
-        
-        let piktogramm = L.icon({  // Piktogramm definieren
-            iconUrl : `icons/icon_${staette.icon}_schwarz_auf_weiss_250px.png`,
-            iconSize : [40,40]
-            
-        });
-        let positionsMarker = L.marker([staette.lat, staette.lng], {
-            icon : piktogramm
-        }).addTo(karte); //marker setzten und hinzufügen
-       
-            positionsMarker.bindPopup(`
-            <h3> ${staette.anlage}</h3>
-            <p> ${staette.typ}</p>
-            `)
-    }
-    
-
-
