@@ -89,7 +89,7 @@ async function loadStations() {
         })
 
         //falls keine Windgeschwindigkeit aufm Server hinterlegt ist, aoll nichts abgezeigt werden
-
+        //Windrichtung und Einfärbung der Pfeile
         .addTo(awsTirol);
     awsTirol.addTo(karte);
     karte.fitBounds(awsTirol.getBounds());
@@ -98,20 +98,61 @@ async function loadStations() {
     L.geoJson(stations, {
         pointToLayer: function (feature, latlng) {
             if (feature.properties.WR) {
-            return L.marker(latlng, {
-                icon: L.divIcon({
-                    html: `<i style="transform: rotate(${feature.properties.WR-45}deg)"class="fas fa-location-arrow fa-2x"></i>`
-                })
+                let color = "black";
+                if (feature.properties.WG > 20) {
+                    color = "red"
+                }
+                return L.marker(latlng, {
+                    icon: L.divIcon({
+                        html: `<i style="color: ${color}; transform: rotate(${feature.properties.WR-45}deg)"class="fas fa-location-arrow fa-2x"></i>`
+                    })
 
-            });
+                });
 
 
+            }
         }
-    }
-}).addTo(windlayer);
-layerControl.addOverlay(windlayer, "Windrichtung");
-windlayer.addTo(karte);
+    }).addTo(windlayer);
+    layerControl.addOverlay(windlayer, "Windrichtung");
+    windlayer.addTo(karte);
+    const temperaturLayer = L.featureGroup();
+    const farbPalette = [
+        [0, "blue"],
+        [1, "yellow"],
+        [5, "orange"],
+        [10, "red"],
+    ];
+    L.geoJson(stations, {
+            pointToLayer: function (feature, latlng) {
+                if (feature.properties.LT) {
+                    let color = "red";
+                    for (let i = 0; i < farbPalette.length; i++) {
+                        console.log(farbPalette[i], feature.properties.LT);
+                        if (feature.properties.LT < farbPalette[i][0]) {
+                            color = farbPalette[i][1];
+                            break;
+                        }
+                    }
+                    // let color = "blue";
+                    //if (feature.properties.LT > 0) {
+                    //    color = "red"
+                    return L.marker(latlng, {
+                        icon: L.divIcon({
+                            html: `<div class="temperaturLabel" style="background-color:${color}">${feature.properties.LT}</div>`
+                        })
+                
+                
+
+                });
+
+            }
+            }
+        
+    }).addTo(temperaturLayer);
+layerControl.addOverlay(temperaturLayer, "Temperatur");
+temperaturLayer.addTo(karte)
 }
+
 loadStations();
 
 //onsole.log(AWS);
