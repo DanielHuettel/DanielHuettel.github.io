@@ -69,14 +69,15 @@ L.control.layers({
 
 
 //console.log(AWS);
-//Wetterstationen hinzufügen aus geoJson
+//Wetterstationen hinzufügen aus geoJson, Popups einbinden, Popup Inhalt aus geoJson ziehen
 
 
 const awsTirol = L.featureGroup();
 L.geoJson(AWS)
 .bindPopup(function(layer){
     console.log("Layer: ", layer);
-    return "";
+    return `Temperatur: ${layer.feature.properties.LT} °C<br>
+    Datum: ${layer.feature.properties.date}`;
 })
 .addTo(awsTirol);
 awsTirol.addTo(karte);
