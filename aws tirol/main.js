@@ -52,7 +52,7 @@ const kartenLayer = {
 kartenLayer.geolandbasemap.addTo(karte)
 
 //Auswahlmenü hinzufügen
-L.control.layers({
+const layerControl = L.control.layers({
         "geolandbasemap": kartenLayer.geolandbasemap,
         "geolandbasemapgrau": kartenLayer.geolandbasemapgrau,
         "basemaphighdpi": kartenLayer.basemaphighdpi,
@@ -65,20 +65,53 @@ L.control.layers({
         "toner": kartenLayer.stamen_toner
     })
     .addTo(karte);
+// Daten für Temperatur live von Server aws.openweb ziehen; in der index html brauch es keine verlinkung mehr
+async function loadStations() {
+    const response = await fetch("https://aws.openweb.cc/stations");
+    const stations = await response.json();
+    //Wetterstationen hinzufügen aus geoJson, Popups einbinden, Popup Inhalt aus geoJson ziehen
+    const awsTirol = L.featureGroup();
+    L.geoJson(stations)
+        .bindPopup(function (layer) {
+            // console.log("Layer: ", layer);
+            //Datums- und Zeitformat einstellen, Höhe und Temperatur, Windgeschwindigkeit vom Server ziehen
+            const date = new Date(layer.feature.properties.date);
+            console.log("Datum", date);
+            return `<h4>${layer.feature.properties.name}</h4>
+    Höhe: ${layer.feature.geometry.coordinates[2]} m<br>
+    Temperatur: ${layer.feature.properties.LT} °C<br>
+    Datum: ${date.toLocaleDateString("de-AT")}
+    ${date.toLocaleTimeString("de-AT")}<br>
+    Windgeschwindigkeit: ${layer.feature.properties.WG ? layer.feature.properties.WG + "km/h": "keine Daten" }
+    <hr>
+    <footer>Quelle: Land Tirol - <a href="https://data.tirol.gv.at">data.tirol.gv.at</a></footer>
+    `;
+        })
+
+        //falls keine Windgeschwindigkeit aufm Server hinterlegt ist, aoll nichts abgezeigt werden
+
+        .addTo(awsTirol);
+    awsTirol.addTo(karte);
+    karte.fitBounds(awsTirol.getBounds());
+    layerControl.addOverlay(awsTirol, "Wetterstationen Tirol");
+    const windlayer = L.featureGroup();
+    L.geoJson(stations, {
+        pointToLayer: function (feature, latlng) {
+            if (feature.properties.WR) {
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    html: `<i style="transform: rotate(${feature.properties.WR-45}deg)"class="fas fa-location-arrow fa-2x"></i>`
+                })
+
+            });
 
 
+        }
+    }
+}).addTo(windlayer);
+layerControl.addOverlay(windlayer, "Windrichtung");
+windlayer.addTo(karte);
+}
+loadStations();
 
-//console.log(AWS);
-//Wetterstationen hinzufügen aus geoJson, Popups einbinden, Popup Inhalt aus geoJson ziehen
-
-
-const awsTirol = L.featureGroup();
-L.geoJson(AWS)
-.bindPopup(function(layer){
-    console.log("Layer: ", layer);
-    return `Temperatur: ${layer.feature.properties.LT} °C<br>
-    Datum: ${layer.feature.properties.date}`;
-})
-.addTo(awsTirol);
-awsTirol.addTo(karte);
-karte.fitBounds(awsTirol.getBounds());
+//onsole.log(AWS);
