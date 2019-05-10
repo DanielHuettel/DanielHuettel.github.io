@@ -103,23 +103,22 @@ async function loadStations() {
         [11.32, "#73D36F"], //4-5
         [14.40, "#FBD8D3"], //6
         [17.49, "#FFB4B3"], //7
-        [21.09, "#FF9F9D"],//8
-        [24.69,"#FF8281"],  //9
-        [28.81,"#FE5F61"], //10
-        [32.96,"#FE4341"], //11
-        [999,"#FF1F0E"], //>11
+        [21.09, "#FF9F9D"], //8
+        [24.69, "#FF8281"], //9
+        [28.81, "#FE5F61"], //10
+        [32.96, "#FE4341"], //11
+        [999, "#FF1F0E"], //>11
     ];
 
     L.geoJson(stations, {
-        pointToLayer: function (feature, latlng) {
-        let color = windgeschArrowPalette[windgeschArrowPalette.length - 1][1];
-        for (let i = 0; i < windgeschArrowPalette.length; i++) {
-            if (feature.properties.WG < windgeschArrowPalette[i][0]) {
-                color = windgeschArrowPalette[i][1];
-                break;
-            } else {
-            }
-        }
+            pointToLayer: function (feature, latlng) {
+                let color = windgeschArrowPalette[windgeschArrowPalette.length - 1][1];
+                for (let i = 0; i < windgeschArrowPalette.length; i++) {
+                    if (feature.properties.WG < windgeschArrowPalette[i][0]) {
+                        color = windgeschArrowPalette[i][1];
+                        break;
+                    } else {}
+                }
                 return L.marker(latlng, {
                     icon: L.divIcon({
                         html: `<i style="color: ${color}; transform: rotate(${feature.properties.WR-45}deg)"class="fas fa-location-arrow fa-2x"></i>`
@@ -131,52 +130,52 @@ async function loadStations() {
             }
         }
     }).addTo(windlayer);
-    layerControl.addOverlay(windlayer, "Windrichtung");
-    windlayer.addTo(karte);
+layerControl.addOverlay(windlayer, "Windrichtung");
+windlayer.addTo(karte);
 
-    //Temperatur
-    const temperaturLayer = L.featureGroup();
-    const farbPalette = [
-        [-20, "#6B655F"], //<-20
-        [-10, "#732E75"], //-20 bis -10
-        [0, "#3701DA"], //-10 bis 0
-        [10, "#007800"], //0 bis 10
-        [20, "#FCFE05"], //10 bis 20
-        [30, "#F77700"], //20 bis 30
-        [40, "#F20205"], //30 bis 40        
-        [99, "730405"], //>40   
-    ];
-    L.geoJson(stations, {
-        pointToLayer: function (feature, latlng) {
-            if (feature.properties.LT) {
-                let color = "red";
-                for (let i = 0; i < farbPalette.length; i++) {
-                    console.log(farbPalette[i], feature.properties.LT);
-                    if (feature.properties.LT < farbPalette[i][0]) {
-                        color = farbPalette[i][1];
-                        break;
-                    } else {
-                        
-                    }
+//Temperatur
+const temperaturLayer = L.featureGroup();
+const farbPalette = [
+    [-20, "#6B655F"], //<-20
+    [-10, "#732E75"], //-20 bis -10
+    [0, "#3701DA"], //-10 bis 0
+    [10, "#007800"], //0 bis 10
+    [20, "#FCFE05"], //10 bis 20
+    [30, "#F77700"], //20 bis 30
+    [40, "#F20205"], //30 bis 40        
+    [99, "730405"], //>40   
+];
+L.geoJson(stations, {
+    pointToLayer: function (feature, latlng) {
+        if (feature.properties.LT) {
+            let color = "red";
+            for (let i = 0; i < farbPalette.length; i++) {
+                console.log(farbPalette[i], feature.properties.LT);
+                if (feature.properties.LT < farbPalette[i][0]) {
+                    color = farbPalette[i][1];
+                    break;
+                } else {
+
                 }
-                // let color = "blue";
-                //if (feature.properties.LT > 0) {
-                //    color = "red"
-                return L.marker(latlng, {
-                    icon: L.divIcon({
-                        html: `<div class="temperaturLabel" style="background-color:${color}">${feature.properties.LT}</div>`
-                    })
-
-
-
-                });
-
             }
-        }
+            // let color = "blue";
+            //if (feature.properties.LT > 0) {
+            //    color = "red"
+            return L.marker(latlng, {
+                icon: L.divIcon({
+                    html: `<div class="temperaturLabel" style="background-color:${color}">${feature.properties.LT}</div>`
+                })
 
-    }).addTo(temperaturLayer);
-    layerControl.addOverlay(temperaturLayer, "Temperatur");
-    temperaturLayer.addTo(karte)
+
+
+            });
+
+        }
+    }
+
+}).addTo(temperaturLayer);
+layerControl.addOverlay(temperaturLayer, "Temperatur");
+temperaturLayer.addTo(karte)
 
 
 // Relative Feuchte
@@ -200,16 +199,15 @@ L.geoJson(stations, {
                 if (feature.properties.RH < feuchtePalette[i][0]) {
                     color = feuchtePalette[i][1];
                     break;
-                } else {
-                }
-            return L.marker(latlng, {
-                icon: L.divIcon({
-                    html: `<div class="feuchteLabel" style="background-color:${color}">${feature.properties.RH}</div>`
-                })
-            });
+                } else {}
+                return L.marker(latlng, {
+                    icon: L.divIcon({
+                        html: `<div class="feuchteLabel" style="background-color:${color}">${feature.properties.RH}</div>`
+                    })
+                });
+            }
         }
     }
-}
 }).addTo(feuchteLayer);
 layerControl.addOverlay(feuchteLayer, "Relative Feuchte");
 
@@ -221,11 +219,11 @@ const windgeschPalette = [
     [11.32, "#73D36F"], //4-5
     [14.40, "#FBD8D3"], //6
     [17.49, "#FFB4B3"], //7
-    [21.09, "#FF9F9D"],//8
-    [24.69,"#FF8281"],  //9
-    [28.81,"#FE5F61"], //10
-    [32.96,"#FE4341"], //11
-    [999,"#FF1F0E"], //>11
+    [21.09, "#FF9F9D"], //8
+    [24.69, "#FF8281"], //9
+    [28.81, "#FE5F61"], //10
+    [32.96, "#FE4341"], //11
+    [999, "#FF1F0E"], //>11
 ];
 
 L.geoJson(stations, {
@@ -236,8 +234,7 @@ L.geoJson(stations, {
                 if (feature.properties.WG < windgeschPalette[i][0]) {
                     color = windgeschPalette[i][1];
                     break;
-                } else {
-                }
+                } else {}
             }
             return L.marker(latlng, {
                 icon: L.divIcon({

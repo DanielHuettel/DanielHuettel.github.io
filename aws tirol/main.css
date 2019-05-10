@@ -8,10 +8,12 @@ body {
     width: 100vw;
     height: 100vh;
 }
+
 .leaflet-div-icon {
     background: none;
     border: none;
 }
+
 .temperaturLabel {
     display: inline;
     font-size: 1.2em;
@@ -33,9 +35,9 @@ body {
     border: 1px solid gray;
     text-shadow:
         -1px -1px 0 white,
-         1px -1px 0 white,
-        -1px  1px 0 white,
-         1px  1px 0 white;
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
 }
 
 .windgeschLabel {
@@ -46,7 +48,7 @@ body {
     border: 1px solid gray;
     text-shadow:
         -1px -1px 0 white,
-         1px -1px 0 white,
-        -1px  1px 0 white,
-         1px  1px 0 white;
+        1px -1px 0 white,
+        -1px 1px 0 white,
+        1px 1px 0 white;
 }
