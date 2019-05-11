@@ -129,7 +129,7 @@ async function loadStations() {
 
             }
         }
-    }).addTo(windlayer);
+        ).addTo(windlayer);
 layerControl.addOverlay(windlayer, "Windrichtung");
 windlayer.addTo(karte);
 
