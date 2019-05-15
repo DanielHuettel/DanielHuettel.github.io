@@ -70,3 +70,76 @@ karte.addControl(new L.Control.Fullscreen());
 karte.setView([48.208333, 16.373056], 12);
 
 // die Implementierung der Karte startet hier
+
+const url = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERPUNKTOGD &srsName=EPSG:4326&outputFormat=json";
+
+function makeMarker(feature, latlng) {
+    const fotoIcon = L.icon({
+        iconUrl: 'http://www.data.wien.gv.at/icons/sehenswuerdigogd.svg',
+        iconSize: [16, 16]
+    });
+    const sightMarker = L.marker(latlng, {
+        icon: fotoIcon
+    });
+    sightMarker.bindPopup(`
+<h3>${feature.properties.NAME}</h3>
+<p>${feature.properties.BEMERKUNG}</p><hr>
+<p><a target="_blank" href="${feature.properties.WEITERE_INF}">Weblink</a></p>    
+`);
+    return sightMarker; 
+}
+
+
+async function loadSights(url) {
+    const clusterGruppe = L.markerClusterGroup(); 
+    const response = await fetch(url);
+    const sightsData = await response.json();
+    const geoJson = L.geoJson(sightsData, {
+        pointToLayer: makeMarker
+    });
+    clusterGruppe.addLayer(geoJson); //geoJson an Clustergruppe hängen
+    karte.addLayer(clusterGruppe);  //clustergruppe an karte hängen
+    layerControl.addOverlay(clusterGruppe, "Sehenswürdigkeiten");
+
+    const suchFeld = new L.Control.Search({
+        layer: clusterGruppe,
+        propertyName: "NAME" , 
+        zoom: 17,
+        initial: false
+    });
+    karte.addControl(suchFeld);
+}
+
+loadSights(url)
+
+const scale = L.control.scale({
+    imperial: false,
+    metric: true
+});
+karte.addControl(scale);
+
+const wege = "https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:SPAZIERLINIEOGD &srsName=EPSG:4326&outputFormat=json";
+
+function linienPopup(feature, layer) {
+    const popup = `
+    <h3>${feature.properties.NAME}</h3>
+    <p><a target="_blank" href="${feature.properties.WEITERE_INF}">Weblink</a></p>
+    `;
+    layer.bindPopup(popup);
+}
+
+async function loadWege(wegeUrl) {
+    const antwort = await fetch(wegeUrl);
+    const wegeData = await antwort.json();
+    const wegeJson = L.geoJson(wegeData, {
+        style: function() {
+            return {
+                color: "green"
+            };
+        },
+        onEachFeature: linienPopup
+    });
+    karte.addLayer(wegeJson);
+    layerControl.addOverlay(wegeJson, "Spazierwege");
+}
+loadWege(wege);
