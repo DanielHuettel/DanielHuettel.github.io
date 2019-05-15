@@ -87,6 +87,17 @@ async function loadStations() {
     <footer>Quelle: Land Tirol - <a href="https://data.tirol.gv.at">data.tirol.gv.at</a></footer>
     `;
         })
+//let farben =[
+  //  [0,"blau"], 
+  //  [5, "gelb"], 
+  //  [10,"rot"]
+//];
+//farben.length;
+//farben[2][1]
+//for (let i=0; i<farben.length; i++){
+ //   console.log(farben[i]);
+//}
+
 
         //falls keine Windgeschwindigkeit aufm Server hinterlegt ist, aoll nichts abgezeigt werden
         //Windrichtung und Einfärbung der Pfeile
