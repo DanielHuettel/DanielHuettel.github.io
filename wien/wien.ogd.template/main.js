@@ -143,3 +143,55 @@ async function loadWege(wegeUrl) {
     layerControl.addOverlay(wegeJson, "Spazierwege");
 }
 loadWege(wege);
+
+const wifi = 'https://data.wien.gv.at/daten/geo?service=WFS&request=GetFeature&version=1.1.0&typeName=ogdwien:WLANWIENATOGD&srsName=EPSG:4326&outputFormat=json';
+
+function makeWifi(feature, latlng) {
+    const wifiIcon = L.icon({
+        iconUrl: 'http://www.data.wien.gv.at/icons/wlanwienatogd.svg', // marker für wlanstandorte
+        iconSize: [26, 26]
+    });
+    const wifiMarker = L.marker(latlng, {
+        icon: wifiIcon
+    });
+    wifiMarker.bindPopup(`
+        <h3>${feature.properties.NAME}</h3>
+        <b> Adresse: </b> ${feature.properties.ADRESSE}        
+        `);
+    return wifiMarker;
+}
+
+async function loadWifi(wifi) {
+    const clusterGruppewifi = L.markerClusterGroup();
+    const responsewifi = await fetch(wifi);
+    const wifiData = await responsewifi.json();
+    const geoJson = L.geoJson(wifiData, {
+        pointToLayer: makeWifi
+    });
+
+    clusterGruppewifi.addLayer(geoJson);
+    karte.addLayer(clusterGruppewifi);
+    layerControl.addOverlay(clusterGruppewifi, "WLAN-Standorte");
+
+    const suchFeld = new L.Control.Search({
+        layer: clusterGruppewifi,
+        propertyName: "NAME",
+        zoom: 17,
+        initial: false
+    });
+
+    suchFeld.addTo(karte)
+    karte.fitBounds(clusterGruppewifi.getBounds());
+
+    new L.Control.MiniMap(
+        L.tileLayer("https://{s}.wien.gv.at/basemap/geolandbasemap/normal/google3857/{z}/{y}/{x}.png", {
+            subdomains: ["maps", "maps1", "maps2", "maps3", "maps4"],
+        }), {
+            zoomLevelOffset: -4,
+            toggleDisplay: true
+        }
+    ).addTo(karte);
+
+
+}
+loadWifi(wifi);
